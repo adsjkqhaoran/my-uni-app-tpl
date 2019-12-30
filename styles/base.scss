@@ -1,0 +1,277 @@
+$color-brand: map_get($generalColor,theme);
+@each $key, $color in $generalColor {
+  .f_c_#{$key} {
+    color: $color!important;
+  }
+  .bg_c_#{$key} {
+    background: $color!important;
+  }
+}
+$fontSizeArr:20 24 26 28;
+@each $px in $fontSizeArr {
+  .f_#{$px} {
+    font-size: $px+rpx!important;
+  }
+}
+$distanceArr: 5 10 20 30 40 50 60;
+@each $px in $distanceArr {
+  .m_t_#{$px} {
+    margin-top:$px+rpx!important;
+  }
+  .m_l_#{$px} {
+    margin-left:$px+rpx;
+  }
+  .m_r_#{$px} {
+    margin-right:$px+rpx;
+  }
+  .m_b_#{$px} {
+    margin-bottom:$px+rpx;
+  }
+  .p_t_#{$px} {
+    padding-top:$px+rpx;
+  }
+  .p_l_#{$px} {
+    padding-left:$px+rpx;
+  }
+  .p_r_#{$px} {
+    padding-right:$px+rpx;
+  }
+  .p_b_#{$px} {
+    padding-bottom:$px+rpx;
+  }
+  .split_#{$px} {
+    width: $px+rpx;
+    display: inline-block;
+  }
+}
+.clear_float{
+  float: none;
+  clear: both;
+}
+
+.hx_label{
+  border-radius:5rpx;
+  color: map_get($generalColor, secondary_text);
+  padding: 2rpx 8rpx;
+  display: inline-block;
+  &.radius_m{
+    border-radius:15rpx!important;
+  }
+  &.plain {
+    background: #fff!important;
+    &.primary{
+      color: #2390E8;
+    }
+    &.disable{
+      color: map_get($generalColor, disable);
+    }
+    &.theme{
+      color: map_get($generalColor, theme);
+    }
+    &.error{
+      color: map_get($generalColor, error);
+    }
+    &.warning{
+      color: map_get($generalColor, warning);
+    }
+    &.success{
+      color: map_get($generalColor, success);
+    }
+    &.info{
+      color: map_get($generalColor, info);
+    }
+  }
+  &.mini {
+    height:33px;
+    line-height: 33px;
+    text-align: center;
+    font-size: 24px;
+  }
+  &.small {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size:26px;
+  }
+  &.disable{
+    border:1.90px solid map_get($generalColor, disable);
+    color: #fff;
+    background: map_get($generalColor, disable);
+  }
+  &.theme{
+    border:1.90px solid map_get($generalColor, theme);
+    color: #fff;
+    background: map_get($generalColor, theme);
+  }
+  &.info{
+    border:1.90px solid map_get($generalColor, info);
+    color: #fff;
+    background: map_get($generalColor, info);
+  }
+  &.primary{
+    border:1.90px solid #2390E8;
+    color: #fff;
+    background: #2390E8;
+  }
+  &.error{
+    border:1.90px solid map_get($generalColor, error);
+    color: #fff;
+    background: map_get($generalColor, error);
+  }
+  &.warning{
+    border:1.90px solid map_get($generalColor, warning);
+    color: #fff;
+    background: map_get($generalColor, warning);
+  }
+  &.success{
+    border:1.90px solid map_get($generalColor, success);
+    color: #fff;
+    background: map_get($generalColor, success);
+  }
+}
+.hx_btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.radius_m{
+    border-radius: 7rpx;
+  }
+  &.radius_x{
+    border-radius: 20rpx;
+  }
+  &.radius_xx{
+    border-radius:  37rpx;
+  }
+  &.plain {
+    background: #fff!important;
+    &.primary{
+      color: #2390E8;
+      border:1rpx solid #2390E8;
+    }
+    &.theme{
+      color: map_get($generalColor, theme);
+      border:1.90rpx solid map_get($generalColor, theme);
+    }
+    &.stheme{
+      color: map_get($generalColor, theme);
+      border:1.90rpx solid map_get($generalColor, stheme);
+    }
+    &.error{
+      color: map_get($generalColor, error);
+      border:1.90rpx solid map_get($generalColor, error);
+    }
+    &.warning{
+      color: map_get($generalColor, warning);
+      border:1.90rpx solid map_get($generalColor, warning);
+    }
+    &.success{
+      color: map_get($generalColor, success);
+      border:1.90rpx solid map_get($generalColor, success);
+    }
+    &.light{
+      color: #fff;
+      border:1.90rpx solid #fff;
+    }
+    &.black{
+      color: #000;
+      border:1.90rpx solid #BBBBBB;
+    }
+  }
+  &.normal{
+    width:100%;
+    height: 100rpx;
+    text-align: center;
+    font-size: 28rpx;
+  }
+  &.small{
+    width:100%;
+    height: 80rpx;
+    text-align: center;
+    font-size: 28rpx;
+  }
+  &.mini {
+    width:100%;
+    height: 50rpx;
+    text-align: center;
+    font-size: 24rpx;
+  }
+  &.black{
+    background: #000;
+    color: #e2dfd1;
+  }
+  &.success{
+    background: map_get($generalColor, success);
+    color: #fff;
+  }
+  &.warning{
+    background: map_get($generalColor, warning);
+    color: #fff;
+  }
+  &.table_header{
+    background: map_get($generalColor, table_header);
+    color: #000;
+  }
+  &.theme{
+    background: map_get($generalColor, theme);
+    color: #fff;
+  }
+  &.stheme{
+    background: map_get($generalColor, stheme);
+    color: #fff;
+  }
+  &.disable{
+    background: map_get($generalColor, border)!important;
+    color: map_get($generalColor, disable);
+  }
+  &.light{
+    background: #fff;
+    color: #000;
+  }
+}
+.container{
+ 
+}
+
+.d_flex{
+  display: flex;
+}
+
+.flex_1{
+  flex:1!important;
+}
+.flex_2{
+  flex:2!important;
+}
+.d_inline_block{
+  display: inline-block;
+}
+.d_block{
+  display: block;
+}
+.t_center{
+  text-align: center;
+  width:100%;
+  display: block;
+}
+.clear_wx_btn{
+  background: transparent;
+  line-height: inherit;
+  padding:0px;
+  flex-shrink: 0;
+  display: inline-block;
+  margin: 0px!important;
+  display: flex;
+  align-items: center;
+  &:after{
+    border:none;
+  }
+}
+.hidden{
+  display: none!important;
+}
+// 启用原生暂位符号后的
+.app_native_bar_place{
+	height: var(--status-bar-height);
+	padding-top: 88rpx;
+	box-sizing: content-box;
+}
