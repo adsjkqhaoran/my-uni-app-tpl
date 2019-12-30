@@ -1,6 +1,10 @@
 <template>
 	<view>
-			<nav-bar  bgColor="#CD3E40"  transparentFixedBgColor="#CD3E40">
+			<nav-bar 
+			bgColor="#FFFFFF"
+			backState="2000"
+			transparentFixedBgColor="#CD3E40"    
+			type="transparentFixed" :hasPlace="true">
 				<view class="mp-search-box">
 						<input class="ser-input" type="text" value="庆余年" disabled />
 				</view>

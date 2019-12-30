@@ -16,5 +16,22 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle": "custom"
+	},
+	"tabBar": {
+	    "color": "#7A7E83",
+	    "selectedColor": "#D3504E",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/index/index",
+	        "iconPath": "static/images/tab/home.png",
+	        "selectedIconPath": "static/images/tab/home-active.png",
+	        "text": "组件"
+	    }, {
+	        "pagePath": "pages/user/index",
+	        "iconPath": "static/images/tab/user.png",
+	        "selectedIconPath": "static/images/tab/user-active.png",
+	        "text": "接口"
+	    }]
 	}
 }

@@ -4,21 +4,22 @@
 		bgColor="#FFFFFF"
 		transparentFixedBgColor="#CD3E40"    
 		type="transparentFixed" 
-		:hasPlace="true"
 		backState="2000"
 		:mescroll="mescroll">
 			<view class="mp-search-box">
-					<input class="ser-input" type="text" value="庆余年" disabled />
+					<input class="ser-input" type="text" value="庆余年" disabled @click="toast('搜索')"/>
 			</view>
 			<view class="mp-search-box" slot="transparentFixed">
-					<input class="ser-input" type="text" value="庆余年" disabled @click="test"/>
+					<input class="ser-input" type="text" value="庆余年" disabled @click="toast('搜索')"/>
 			</view>
-			<view class="iconfont icon-user" slot="transparentFixedLeft"></view>
-			<view class="iconfont icon-user" slot="left"></view>
-			<view class="iconfont icon-qrcode" slot="transparentFixedRight"></view>
-			<view class="iconfont icon-qrcode" slot="right"></view>
+			<view class="iconfont icon-user" slot="transparentFixedLeft" @click="toUser"></view>
+			<view class="iconfont icon-user" slot="left"  @click="toUser"></view>
+			<!-- #ifndef H5 -->
+				<view class="iconfont icon-qrcode" slot="transparentFixedRight" @click="toScan"></view>
+				<view class="iconfont icon-qrcode" slot="right" @click="toScan"></view>
+			<!-- #endif -->
 		</nav-bar>
-		<mescroll-uni :statusTop="true" top="88" bottom="0" :down="downOption" @down="downCallback"   @scroll="mescrollScroll">
+		<mescroll-uni :statusTop="true" top="88" bottom="0" :down="downOption" @down="downCallback"   @scroll="mescrollScroll" @up="upCallback">
 			<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode">
 				<swiper class="swiper-box" @change="change">
 					<swiper-item v-for="(item ,index) in info" :key="index">
@@ -29,8 +30,8 @@
 				</swiper>
 			</uni-swiper-dot>
 			{{common.platForm}}
-			<view class='hx_btn normal theme' @click="toScan">打开扫码</view>
-			<view class='hx_btn small theme m_t_10' @click="toUser">我的</view>
+			<view class='hx_btn normal theme'>xx</view>
+			<view class='hx_btn small theme m_t_10'>xx</view>
 			<view class='hx_btn mini disable m_t_10'>cs</view>
 			<view style="height:1000rpx;"></view>
 		</mescroll-uni>
@@ -68,6 +69,12 @@
 			 ...mapState(['common','user'])
 		},
 		methods: {
+			toast(title) {
+				uni.showToast({
+					icon: 'none',
+					title: title
+				})
+			},
 			mescrollScroll(mescroll) {
 				this.mescroll = {
 					scrollTop: mescroll.scrollTop 
@@ -76,24 +83,29 @@
 			downCallback(mescroll){
 				setTimeout(function(){
 					mescroll.endErr()
-				},3000)
+				},1000)
+			},
+			upCallback(mescroll){
+				setTimeout(function(){
+					mescroll.endErr()
+				},1000)
 			},
 			toUser() {
-				uni.navigateTo({
-					url: '/pages/user/index'
+				uni.switchTab({
+					url: '/pages/user/index'	
 				})
 			},
 			toScan(){
 				// h5是不支持扫码的
 				// 允许从相机和相册扫码
-				// uni.scanCode({
-				//     success: function (res) {
-				//         console.log('条码类型：' + res.scanType);
-				//         console.log('条码内容：' + res.result);
-				// 		// 条码类型：QR_CODE at pages/index/index.vue
-				// 		// 条码内容：http://video.slyzn.com/setting.html?ipfsUrl=http%3A%2F%2F192.168.0.106%3A5001%2F at pages/index/index.vue
-				//     }
-				// });
+				uni.scanCode({
+				    success: function (res) {
+				        console.log('条码类型：' + res.scanType);
+				        console.log('条码内容：' + res.result);
+						// 条码类型：QR_CODE at pages/index/index.vue
+						// 条码内容：http://video.slyzn.com/setting.html?ipfsUrl=http%3A%2F%2F192.168.0.106%3A5001%2F at pages/index/index.vue
+				    }
+				});
 			},
 			change(e) {
 				this.current = e.detail.current
