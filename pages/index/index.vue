@@ -18,7 +18,7 @@
 			<view class="iconfont icon-qrcode" slot="transparentFixedRight"></view>
 			<view class="iconfont icon-qrcode" slot="right"></view>
 		</nav-bar>
-		<mescroll-uni top="88" bottom="0" :down="downOption" @down="downCallback"   @scroll="mescrollScroll">
+		<mescroll-uni :statusTop="true" top="88" bottom="0" :down="downOption" @down="downCallback"   @scroll="mescrollScroll">
 			<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode">
 				<swiper class="swiper-box" @change="change">
 					<swiper-item v-for="(item ,index) in info" :key="index">

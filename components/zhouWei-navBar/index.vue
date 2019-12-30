@@ -45,8 +45,7 @@
 			</view>
 			<view class="right_info"><slot name="transparentFixedRight"></slot></view>
 		</view>
-		<view v-if="type == 'fixed'" class="station" :style="{ paddingTop: statusBarHeight + 'px' }"></view>
-		<view class="nav-status" :style="{ paddingTop: statusBarHeight + 'px' }"></view>
+		<view v-if="type == 'fixed'||type == 'transparentFixed'" class="station" :style="{ paddingTop: statusBarHeight + 'px' }"></view>
 		<view v-if="hasPlace" class="nav-place"></view>
 	</view>
 </template>
@@ -392,7 +391,7 @@ export default {
 	&.line {
 		//需要显示线条的在这打开
 		// border-bottom: 2rpx solid #f5f5f5;
-		box-shadow: 0 0 6rpx 0 #ddd;
+		// box-shadow: 0 0 6rpx 0 #ddd;
 	}
 	&.transparentFixed,
 	&.transparent {

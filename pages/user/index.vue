@@ -1,6 +1,6 @@
 <template>
 	<view>
-			<nav-bar  bgColor="#FFFFFF"  transparentFixedBgColor="#CD3E40"    type="transparentFixed" :hasPlace="false">
+			<nav-bar  bgColor="#CD3E40"  transparentFixedBgColor="#CD3E40">
 				<view class="mp-search-box">
 						<input class="ser-input" type="text" value="庆余年" disabled />
 				</view>
@@ -8,18 +8,22 @@
 						<input class="ser-input" type="text" value="庆余年" disabled @click="test"/>
 				</view>
 			</nav-bar>
-			<!-- <view class="iconfont icon-Cart"></view> -->
 		   <image class="swiper-img" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2329712721,1387032941&fm=26&gp=0.jpg" alt="" mode="widthFix"></image>
-		<view style="height:2000rpx;background: #000;"></view>
+		   <view style="height:2000rpx;background: #000;"></view>
+			
 	</view>
 </template>
 
 <script>
+	import MescrollUni from "@/components/mescroll-diy/mescroll-xinlang.vue";
 	export default {
 		methods: {
 			test() {
 				console.log('111')
 			}
+		},
+		components: {
+			MescrollUni
 		}
 	}
 </script>

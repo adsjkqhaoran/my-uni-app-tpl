@@ -76,12 +76,19 @@
 				default(){
 					return true
 				}
+			},
+			statusTop: { // 是否加上状态栏
+				type: Boolean,
+				default(){
+					return false
+				}
 			}
 		},
 		computed: {
 			// top数值,单位upx,需转成px. 目的是使下拉布局往下偏移
 			numTop(){
-				return uni.upx2px(Number(this.top||0)) + uni.getSystemInfoSync()['statusBarHeight']
+				let statusH = this.statusTop?(uni.getSystemInfoSync()['statusBarHeight']):0
+				return uni.upx2px(Number(this.top||0)) + parseInt(statusH)
 			},
 			fixedTop(){
 				return this.fixed ? (this.numTop + this.windowTop) + 'px' : 0
