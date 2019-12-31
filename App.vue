@@ -18,4 +18,11 @@
 	/* #endif */
 	@import './styles/iconfont.scss';
 	@import './styles/components.scss';
+	::-webkit-scrollbar {
+	        display: none;  
+	        width: 0 !important;  
+	        height: 0 !important;  
+	        -webkit-appearance: none;  
+	        background: transparent;  
+	    }
 </style>

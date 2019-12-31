@@ -1,52 +1,80 @@
 <template>
-	<view>
-		<nav-bar  
-		bgColor="#FFFFFF"
-		transparentFixedBgColor="#CD3E40"    
-		type="transparentFixed" 
-		backState="2000"
-		:mescroll="mescroll">
-			<view class="mp-search-box">
-					<input class="ser-input" type="text" value="庆余年" disabled @click="toast('搜索')"/>
-			</view>
-			<view class="mp-search-box" slot="transparentFixed">
-					<input class="ser-input" type="text" value="庆余年" disabled @click="toast('搜索')"/>
-			</view>
-			<view class="iconfont icon-user" slot="transparentFixedLeft" @click="toUser"></view>
-			<view class="iconfont icon-user" slot="left"  @click="toUser"></view>
-			<!-- #ifndef H5 -->
-				<view class="iconfont icon-qrcode" slot="transparentFixedRight" @click="toScan"></view>
-				<view class="iconfont icon-qrcode" slot="right" @click="toScan"></view>
-			<!-- #endif -->
-		</nav-bar>
-		<mescroll-uni :statusTop="true" top="88" bottom="0" :down="downOption" @down="downCallback"   @scroll="mescrollScroll" @up="upCallback">
-			<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode">
-				<swiper class="swiper-box" @change="change">
-					<swiper-item v-for="(item ,index) in info" :key="index">
-						<view class="swiper-item">
-							<image :src="item.src" alt="" mode="aspectFill">
-						</view>
-					</swiper-item>
-				</swiper>
-			</uni-swiper-dot>
-			{{common.platForm}}
-			<view class='hx_btn normal theme'>xx</view>
-			<view class='hx_btn small theme m_t_10'>xx</view>
-			<view class='hx_btn mini disable m_t_10'>cs</view>
-			<view style="height:1000rpx;"></view>
-		</mescroll-uni>
+	<Layout>
+		<view class="container Index">
+			<nav-bar
+				bgColor="#FFFFFF"
+				transparentFixedBgColor="#CD3E40"    
+				backState="2000"
+				type="transparentFixed"
+				:hasPlace="true"
+				:mescroll="mescroll">
+				<view class="mp-search-box">
+						<input class="ser-input" type="text" value="庆余年" disabled @click="toast('搜索')"/>
+				</view>
+				<view class="mp-search-box" slot="transparentFixed">
+						<input class="ser-input" type="text" value="庆余年" disabled @click="toast('搜索')"/>
+				</view>
+				<view class="iconfont icon-user" slot="transparentFixedLeft" @click="toUser"></view>
+				<view class="iconfont icon-user" slot="left"  @click="toUser"></view>
+				<!-- #ifndef H5 -->
+					<view class="iconfont icon-qrcode" slot="transparentFixedRight" @click="toScan"></view>
+					<view class="iconfont icon-qrcode" slot="right" @click="toScan"></view>
+				<!-- #endif -->
+			</nav-bar> 
+			<QSTabs
+			ref="tabs" 
+			:tabs="tabs" 
+			:current="tabCurrent" 
+			@change="tabChange"
+			animationMode="line3"
+			:activeColor="common.theme"
+			
+			>
+			</QSTabs>
+			<swiper 
+			class="swiper"
+			:current="tabCurrent" 
+			@transition="transition"
+			@animationfinish="animationfinish">
+				<swiper-item>
+					<mescroll-uni :statusTop="false" top="0" bottom="0" :down="downOption" @down="downCallback"   @scroll="mescrollScroll" @up="upCallback">
+						<uni-swiper-dot :info="info" :current="swiperCurrent" field="content" :mode="mode">
+							<swiper class="swiper-box" @change="swiperChange">
+								<swiper-item v-for="(item ,index) in info" :key="index">
+									<view class="swiper-item">
+										<image :src="item.src" alt="" mode="aspectFill">
+									</view>
+								</swiper-item>
+							</swiper>
+						</uni-swiper-dot>
+						{{common.platForm}} {{common.sysTemInfo.windowHeight}}
+						<view class='hx_btn normal theme'>xx</view>
+						<view class='hx_btn small theme m_t_10'>xx</view>
+						<view class='hx_btn mini disable m_t_10'>cs</view>
+						<view style="height:2000rpx;"></view>
+					</mescroll-uni>
+				</swiper-item>
+				<swiper-item>2</swiper-item>
+			</swiper>
+		</view>
 		
-	</view>
+		
+	</Layout>
 </template>
-
 <script>
 	// 自定义的mescroll-xinlang.vue
 	import MescrollUni from "@/components/mescroll-diy/mescroll-xinlang.vue";
 	import uniSwiperDot from "@/components/uni-swiper-dot/uni-swiper-dot.vue"
 	import {mapMutations,mapState} from 'vuex';
+	import Layout from '@/components/layout/layout.vue'
+	import QSTabs from '@/components/QS-tabs/QS-tabs.vue';
+	import Tips from '../../utils/tips.js'
+	import UiConfig from '../../data/ui.js'
 	export default {
 		data() {
 			return {
+				tabs:[{'name':'测试1'},{'name':'测试2'}],
+				tabCurrent: 0,
 				mescroll: {},
 				downOption:{
 					auto:false,//是否在初始化完毕之后自动执行下拉回调callback; 默认true
@@ -58,22 +86,21 @@
 					content: '内容 B',
 					src: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576759097723&di=c2d75f11ba6427810bc363de267b4095&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F7Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F7c1ed21b0ef41bd572ea367f5ada81cb38db3d84.jpg'
 				}],
-				current: 0,
+				swiperCurrent: 0,
 				mode: 'nav'
 			};
 		},
 		onReady(){
-			
 		},
 		computed:{
 			 ...mapState(['common','user'])
 		},
 		methods: {
+			tabChange(index) {
+				this.tabCurrent = index
+			},
 			toast(title) {
-				uni.showToast({
-					icon: 'none',
-					title: title
-				})
+				Tips.toast(title)
 			},
 			mescrollScroll(mescroll) {
 				this.mescroll = {
@@ -103,61 +130,81 @@
 				        console.log('条码类型：' + res.scanType);
 				        console.log('条码内容：' + res.result);
 						// 条码类型：QR_CODE at pages/index/index.vue
-						// 条码内容：http://video.slyzn.com/setting.html?ipfsUrl=http%3A%2F%2F192.168.0.106%3A5001%2F at pages/index/index.vue
+						// 条码内容：http://video.slyzn.com/setting.html?ipfsUrl=http://192.168.0.106:5001/
 				    }
 				});
 			},
-			change(e) {
-				this.current = e.detail.current
-			} 
+			swiperChange(e) {
+				this.swiperCurrent = e.detail.current
+			},
+			transition({ detail: { dx } }) {
+				this.$refs.tabs.setDx(dx);
+			},
+			animationfinish({detail: { current }}) {
+				this.$refs.tabs.setFinishCurrent(current);
+				this.swiperCurrent = current;
+				this.current = current;
+			}
 		},
 		components: {
 			uniSwiperDot,
-			MescrollUni
+			MescrollUni,
+			Layout,
+			QSTabs
 		}
 	}
 </script>
 
 <style lang="scss">
-	.mp-search-box{
-		position:relative;
-		left: 0;
-		z-index: 9999;
-		width: 100%;
-		height: 88rpx;
+	.Index{
 		display: flex;
-		align-items: center;
-		padding:0rpx 10rpx;
-		box-sizing: border-box;
-		.ser-input{
-			flex:1;
-			height: 50rpx;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			font-size: 24rpx;
-			color:map-get($generalColor,secondary_text);
-			border-radius: 30rpx;
-			background: #DDDDDD;
+		flex-direction: column;
+		.swiper{
+			flex: 1;
+			height: auto!important;
 		}
-		.ma-search-place{
+		.swiper-box{
+			height: 50vw;
+			.swiper-item{
+				height: 50vw;
+				image{
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+		.mp-search-box{
+			position:relative;
+			left: 0;
+			z-index: 9999;
 			width: 100%;
 			height: 88rpx;
-		}
-		image{
-			width: 100%;
-		}
-	}
-	.swiper-box{
-		height: 50vw;
-		.swiper-item{
-			height: 50vw;
+			display: flex;
+			align-items: center;
+			padding:0rpx 10rpx;
+			box-sizing: border-box;
+			.ser-input{
+				flex:1;
+				height: 50rpx;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				font-size: 24rpx;
+				color:map-get($generalColor,secondary_text);
+				border-radius: 30rpx;
+				background: #DDDDDD;
+			}
+			.ma-search-place{
+				width: 100%;
+				height: 88rpx;
+			}
 			image{
 				width: 100%;
-				height: 100%;
 			}
 		}
 	}
+	
+	
 	
 </style>

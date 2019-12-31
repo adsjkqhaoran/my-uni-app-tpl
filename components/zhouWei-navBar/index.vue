@@ -220,10 +220,12 @@ export default {
 	},
 	watch: {
 		mescroll(e) {
-			if (e.scrollTop > 180) {
-				this.transparentValue = 1;
-			} else {
-				this.transparentValue = e.scrollTop / 180;
+		    if (this.type == 'transparentFixed') {
+				if (e.scrollTop > 180) {
+					this.transparentValue = 1;
+				} else {
+					this.transparentValue = e.scrollTop / 180;
+				}
 			}
 		},
 		title(val) {
@@ -376,14 +378,14 @@ export default {
 		top: 0;
 		left: 0;
 		right: 0;
-		z-index: 99;
+		z-index: map-get($zIndex,nav);
 	}
 	&.absolute {
 		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
-		z-index: 99;
+		z-index: map-get($zIndex,nav);
 		background-color: transparent !important;
 	}
 	&.line {

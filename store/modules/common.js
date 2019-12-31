@@ -1,3 +1,4 @@
+import UiConfig from '../../data/ui.js'
 const common = {
 	namespaced: false,
 	state: {
@@ -11,7 +12,8 @@ const common = {
 		// #ifdef APP-PLUS
 		platForm: uni.getSystemInfoSync().platform, 
 		// #endif
-		
+		theme: UiConfig.theme,
+		sysTemInfo: uni.getSystemInfoSync()
 	},
 	mutations: {
 	}
