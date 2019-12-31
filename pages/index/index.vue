@@ -35,6 +35,7 @@
 			class="swiper"
 			:current="tabCurrent" 
 			@transition="transition"
+			@change="tabSwiperChange"
 			@animationfinish="animationfinish">
 				<swiper-item>
 					<mescroll-uni :statusTop="false" top="0" bottom="0" :down="downOption" @down="downCallback"   @scroll="mescrollScroll" @up="upCallback">
@@ -55,6 +56,7 @@
 					</mescroll-uni>
 				</swiper-item>
 				<swiper-item>2</swiper-item>
+				<swiper-item>3</swiper-item>
 			</swiper>
 		</view>
 		
@@ -73,7 +75,7 @@
 	export default {
 		data() {
 			return {
-				tabs:[{'name':'测试1'},{'name':'测试2'}],
+				tabs:[{'name':'测试1'},{'name':'测试2'},{'name':'测试3'}],
 				tabCurrent: 0,
 				mescroll: {},
 				downOption:{
@@ -137,13 +139,15 @@
 			swiperChange(e) {
 				this.swiperCurrent = e.detail.current
 			},
+			tabSwiperChange(e) {
+			},
 			transition({ detail: { dx } }) {
 				this.$refs.tabs.setDx(dx);
 			},
 			animationfinish({detail: { current }}) {
 				this.$refs.tabs.setFinishCurrent(current);
 				this.swiperCurrent = current;
-				this.current = current;
+				this.tabCurrent = current;
 			}
 		},
 		components: {
