@@ -280,3 +280,11 @@ $distanceArr: 5 10 20 30 40 50 60;
 	width: 100vw;
 	min-height: 100vh;
 }
+// 3d 加速
+.3d_speedUp{
+   -webkit-transform: translateZ(0);
+   -moz-transform: translateZ(0);
+   -ms-transform: translateZ(0);
+   -o-transform: translateZ(0);
+   transform: translateZ(0);
+}

@@ -3,7 +3,7 @@
 		<view class="container Index">
 			<nav-bar
 				bgColor="#FFFFFF"
-				transparentFixedBgColor="#CD3E40"    
+				:transparentFixedBgColor="common.theme"    
 				backState="2000"
 				type="transparentFixed"
 				:hasPlace="true"
@@ -50,7 +50,7 @@
 						</uni-swiper-dot>
 						{{common.platForm}} {{common.sysTemInfo.windowHeight}}
 						<view class='hx_btn normal theme'>xx</view>
-						<view class='hx_btn small theme m_t_10'>xx</view>
+						<view class='hx_btn small theme m_t_10' @click="navigateTo('/pages/video/index')">video</view>
 						<view class='hx_btn mini disable m_t_10'>cs</view>
 						<view style="height:2000rpx;"></view>
 					</mescroll-uni>
@@ -68,7 +68,6 @@
 	import MescrollUni from "@/components/mescroll-diy/mescroll-xinlang.vue";
 	import uniSwiperDot from "@/components/uni-swiper-dot/uni-swiper-dot.vue"
 	import {mapMutations,mapState} from 'vuex';
-	import Layout from '@/components/layout/layout.vue'
 	import QSTabs from '@/components/QS-tabs/QS-tabs.vue';
 	import Tips from '../../utils/tips.js'
 	import UiConfig from '../../data/ui.js'
@@ -93,6 +92,7 @@
 			};
 		},
 		onReady(){
+
 		},
 		computed:{
 			 ...mapState(['common','user'])
@@ -153,7 +153,6 @@
 		components: {
 			uniSwiperDot,
 			MescrollUni,
-			Layout,
 			QSTabs
 		}
 	}

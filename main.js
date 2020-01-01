@@ -2,11 +2,38 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import zhouWeiNavBar from "@/components/zhouWei-navBar";
- // import AnLayer from '@/components/an-layer/an-layer.vue';
+import Layout from '@/components/layout/layout.vue'
 Vue.component("nav-bar", zhouWeiNavBar);
-// Vue.component('AnLayer', AnLayer)
+Vue.component('Layout', Layout)
 Vue.prototype.$store = store
 Vue.config.productionTip = false
+
+// 全局混入
+Vue.mixin({
+	methods: {
+		navigateTo(path) {
+			uni.navigateTo({
+				url: path,
+				success: res => {},
+				fail: () => {},
+				complete: () => {}
+			});
+		},
+		redirectTo(path) {
+			uni.redirectTo({
+				url: path,
+				success: res => {},
+				fail: () => {},
+				complete: () => {}
+			});
+		},
+		switchTo(path) {
+			uni.switchTab({
+			    url: path
+			});
+		}
+	}
+})
 
 App.mpType = 'app'
 

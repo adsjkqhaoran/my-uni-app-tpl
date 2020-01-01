@@ -4,7 +4,7 @@
 			
 		</view>
 		<view ref="popRef" class="an-message" v-show="msgShow" :style="_location">
-			<view v-if="an_direction == 'left' || an_direction == 'right'" style="width: 540upx; height: 60upx; background-color: #0081FF; line-height: 60upx; text-align: center; color: #FFFFFF;">
+			<view v-if="an_direction == 'left' || an_direction == 'right'" style="width: 540rpx; height: 60rpx; background-color: #0081FF; line-height: 60rpx; text-align: center; color: #FFFFFF;">
 				<text>{{an_title}}</text>
 			</view>
 			<view class="scoll">
@@ -151,7 +151,7 @@
 <style lang="scss">
 	.an-layer {
 		position: fixed;
-		z-index: 999999;
+		z-index: map-get($zIndex,'topTip');
 		background: rgba(0, 0, 0, .3);
 		height: 100%;
 		width: 100%;
@@ -162,15 +162,16 @@
 
 	.an-message {
 		position: fixed;
-		z-index: 1000000;
+		z-index: map-get($zIndex,'topTip');
 		background: #FFFFFF;
 		transition: all .4s ease-in-out;
 		overflow: hidden;
 		font-size: 14px;
 		text-align: center;
 		color: #FFFFFF;
-		height: 60upx;
-		line-height: 60upx;
+		padding-top:var(--status-bar-height);
+		height: 88rpx  ;
+		line-height: 88rpx;
 	}
 	.scoll{
 		overflow-y: auto;

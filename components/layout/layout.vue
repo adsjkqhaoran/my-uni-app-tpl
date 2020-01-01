@@ -1,19 +1,31 @@
 <template>
 	<view class='layout'>
 		<slot></slot>
-		<!-- <uni-popup :animation="true" ref="popup" type="center">底部弹出 Popup</uni-popup> -->
+		
+		<an-layer ref="anRef" :autoClose="true" timer="3" >
+		    <text>Hello Andot</text>   
+		</an-layer>
 	</view>
 </template>
 
 <script>
+	import anLayer from '@/components/an-layer/an-layer'
+	import QSPopup from '../../components/QS-popup/QS-popup.vue';
 	export default {
-		onReady() {
-			// setTimeout(()=>{
-			// 	this.$refs.popup.open()
-			// 	this.$refs.anRef.show("验证码发送失败，请重试！");
-			// },3000)
+		mounted() {
 		},
-		components: {}
+		methods: {
+			topTips(msg, obj={}) {
+				this.$refs.anRef.show(msg,{
+					type: obj.type||'success',
+					direction: 'top'
+				});
+			}
+		},
+		components: {
+			anLayer,
+		    QSPopup
+		}
 	}
 </script>
 
