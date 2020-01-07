@@ -25,6 +25,7 @@
 						{{ common.platForm }} {{ common.sysTemInfo.windowHeight }}
 						<view class="hx_btn normal theme" @click="update">update</view>
 						<view class="hx_btn small theme m_t_10" @click="navigateTo('/pages/demo/video')">video</view>
+						<view class="hx_btn mini theme m_t_10" @click="navigateTo('/pages/demo/verify')">verify</view>
 						<view class="hx_btn mini disable m_t_10">cs</view>
 						<view style="height:2000rpx;"></view>
 					</mescroll-uni>

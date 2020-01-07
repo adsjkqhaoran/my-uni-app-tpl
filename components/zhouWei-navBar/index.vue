@@ -14,8 +14,10 @@
 					</view>
 				</slot>
 			</view>
-			<view class="title" :class="{ center: titleCenter, darkBg: isDarkBg }" v-if="$slots.default || navTitle">
-				<slot>{{ navTitle }}</slot>
+			<view class="title" :class="{darkBg: isDarkBg }" v-if="$slots.default || navTitle">
+				<slot>
+					<view :class="{center: titleCenter}">{{ navTitle }}</view>
+				</slot>
 			</view>
 			<view class="right_info"><slot name="right"></slot></view>
 		</view>
@@ -40,8 +42,10 @@
 					</view>
 				</slot>
 			</view>
-			<view class="title" :class="{ center: titleCenter, darkBg: isDarkBg }" v-if="$slots.default || navTitle">
-				<slot name="transparentFixed">{{ navTitle }}</slot>
+			<view class="title" :class="{darkBg: isDarkBg }" v-if="$slots.default || navTitle">
+				<slot name="transparentFixed">
+					<view :class="{center: titleCenter}">{{ navTitle }}</view>
+				</slot>
 			</view>
 			<view class="right_info"><slot name="transparentFixedRight"></slot></view>
 		</view>
@@ -87,7 +91,7 @@ export default {
 		bgColor: {
 			type: [String, Array],
 			default: function() {
-				return '#FFF';
+				return UiConfig.theme;
 			}
 		},
 		// 导航背景色渐变角度
@@ -287,6 +291,8 @@ export default {
 			};
 			// #endif
 		}
+	},
+	mounted() {
 	},
 	//方法
 	methods: {
@@ -492,11 +498,10 @@ export default {
 		max-width: 60vw;
 		/* #endif */
 		color: #000000;
-		&.center {
-			// position: absolute;
-			// bottom: 0;
-			// left: 50%;
-			// transform: translateX(-50%);
+		.center {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
 		}
 	}
 	.right_info {

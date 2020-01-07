@@ -1,6 +1,6 @@
 <template>
 	<Layout ref="layout">
-		<nav-bar :bgColor="common.theme"></nav-bar>
+		<nav-bar :bgColor="common.theme" title="视频"></nav-bar>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view>
 				<video
@@ -31,7 +31,6 @@
 import { mapMutations, mapState } from 'vuex';
 export default {
 	data() {
-		
 		return {
 			src: '',
 			danmuList: [
