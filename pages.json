@@ -1,18 +1,18 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-            "path" : "pages/video/index",
-            "style" : {
-			}
-        },{
-			"path": "pages/index/index",
+			"path": "pages/demo/index",
 			"style": {
 			}
 		},{
-			"path": "pages/user/index",
+			"path": "pages/demo/user",
 			"style": {
 			}
-		}
+		},{
+            "path" : "pages/demo/video",
+            "style" : {
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -27,12 +27,12 @@
 	    "borderStyle": "black",
 	    "backgroundColor": "#ffffff",
 	    "list": [{
-	        "pagePath": "pages/index/index",
+	        "pagePath": "pages/demo/index",
 	        "iconPath": "static/images/tab/home.png",
 	        "selectedIconPath": "static/images/tab/home-active.png",
 	        "text": "组件"
 	    }, {
-	        "pagePath": "pages/user/index",
+	        "pagePath": "pages/demo/user",
 	        "iconPath": "static/images/tab/user.png",
 	        "selectedIconPath": "static/images/tab/user-active.png",
 	        "text": "接口"

@@ -49,12 +49,13 @@
 	</view>
 </template>
 <script>
+	import UiConfig from '../../data/ui.js'
 // 主页页面的页面路径
 // 关联功能：打开的页面只有一个的时候右上角自动显示返回首页按钮，下面这个数组是排除显示返回首页的页面。
 // 主页使用场景：小程序分享出去的页面，用户点击开是分享页面，很多情况下是没有返回首页按钮的
-const mainPagePath = ['pages/index/index','pages/user/index'];
+const mainPagePath = UiConfig.navBar.mainPagePath;
 //返回首页的地址
-const homePath = '/pages/index/index';
+const homePath = UiConfig.navBar.homePath;
 //白色表达值
 const whiteList = ['#FFF', '#FFFFFF', 'white', 'rgb(255,255,255)', 'rgba(255,255,255,1)'];
 import * as utils from '../../utils/utls.js';
