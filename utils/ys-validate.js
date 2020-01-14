@@ -26,28 +26,26 @@ export default {
 		return inviteCodeReg.test(val)
 	},
 	validate: function(data, rules) {
-		let res = { isOk: true, errmsg: '' }
+		let res = { isOk: true, errmsg: ''}
 		if (!rules || !rules.length) {
 			return res
 		}
 		for (let rule of rules) {
 			// rule: {name:'', type:'', errmsg:'', min:1, max:2, eq:'', required:Boolean, regex:''}
-			if (!rule || !rule.name || !rule.type) {
+			if (!rule || !rule.name) {
 				continue
 			}
-			
 			// 如果值不存在
 			if (!data[rule.name]) {
 				// 如果是必填项就返回错误提示，required可以作为type是为了不同的type能给用户不同的提示
 				if (rule.type === 'required' || rule.required) {
 					res = { isOk: false, errmsg: rule.errmsg }
+					res.name = rule.name
 					if (!res.errmsg) {
 						res.errmsg = '请正确输入所有数据' //默认提示
 					}
 					return res
 				}
-				// 如果不是必填项就跳过
-				continue
 			}
 			switch (rule.type) {
 				// required 上面已经判断过了
@@ -117,7 +115,14 @@ export default {
 						res = { isOk: false, errmsg: rule.errmsg }
 					}
 				break
+				case 'arrayLength': // 数组长度至少
+					let temp = data[rule.name] ? data[rule.name].length : 0;
+					if (rule.min && temp < rule.min) {
+						res = { isOk: false, errmsg: rule.errmsg }
+					}
+				break
 			}
+			res.name = rule.name
 			// 发现任何一个错误就立即返回，后面的不再判断
 			if (!res.isOk) {
 				if (!res.errmsg) {

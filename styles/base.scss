@@ -228,10 +228,6 @@ $distanceArr: 5 10 20 30 40 50 60;
     color: #000;
   }
 }
-.container{
- height: 100vh;
- overflow: hidden;
-}
 
 .d_flex{
   display: flex;
@@ -279,6 +275,7 @@ $distanceArr: 5 10 20 30 40 50 60;
 .layout{
 	width: 100vw;
 	min-height: 100vh;
+	background: map-get($generalColor,background);
 }
 // 3d 加速
 .3d_speedUp{
