@@ -10,11 +10,11 @@
 			</view>
 			<view class="inpt-cell">
 				<view class="inpt-label">
-					性别：
+					性别:
 				</view>
 				<radio-group @change='onInput' data-name="sex">
-					<label class="radio"><radio value="0" />男</label>
-					<label class="radio"><radio value="1" />女</label>
+					<label class="radio" ><radio value="0" :color="common.theme"/>男</label>
+					<label class="radio" ><radio value="1" :color="common.theme"/>女</label>
 				</radio-group>
 			</view>
 			<view class="inpt-cell">
@@ -23,10 +23,10 @@
 				</view>
 				<checkbox-group @change='onInput' data-name="check">
 				    <label>
-				        <checkbox value="0"  />0
+				        <checkbox value="0" :color="common.theme"/>0
 				    </label>
 				    <label>
-				        <checkbox value="1" />1
+				        <checkbox value="1" :color="common.theme"/>1
 				    </label>
 				</checkbox-group>
 			</view>
@@ -37,6 +37,7 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex';
+import Tips from '@/utils/tips'
 export default {
 	name: 'verify',
 	data() {
@@ -66,11 +67,11 @@ export default {
 			  {name: 'check', type: 'arrayLength', min: 1, errmsg: '请至少选择一个选项'}
 			]
 			let valLoginRes = this.$validate.validate(this.inpt, loginRules)
-			console.log(valLoginRes)
 			if (!valLoginRes.isOk) {
 			  this.$refs['layout'].topTips(valLoginRes.errmsg, {type: 'error'})
 			  return false
-			}
+			} 
+			Tips.toast('提交成功!')
 		}
 	}
 };

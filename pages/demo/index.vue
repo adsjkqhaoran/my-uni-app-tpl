@@ -1,5 +1,5 @@
 <template>
-	<Layout>
+	<Layout class="d_flex">
 		<view class="container Index">
 			<nav-bar bgColor="#FFFFFF" :transparentFixedBgColor="common.theme" backState="2000" type="transparentFixed" :hasPlace="true" :mescroll="mescroll">
 				<view class="mp-search-box"><input class="ser-input" type="text" value="庆余年" disabled @click="toast('搜索')" /></view>
@@ -14,21 +14,22 @@
 			<QSTabs ref="tabs" :tabs="tabs" :current="tabCurrent" @change="tabChange" animationMode="line3" :activeColor="common.theme"></QSTabs>
 			<swiper class="swiper" :current="tabCurrent" @transition="transition" @change="tabSwiperChange" @animationfinish="animationfinish">
 				<swiper-item>
-					<mescroll-uni :statusTop="false" top="0" bottom="0" :down="downOption" @down="downCallback" @scroll="mescrollScroll" @up="upCallback">
-						<uni-swiper-dot :info="info" :current="swiperCurrent" field="content" :mode="mode">
-							<swiper class="swiper-box" @change="swiperChange">
-								<swiper-item v-for="(item, index) in info" :key="index">
-									<view class="swiper-item"><image :src="item.src" alt="" mode="aspectFill" /></view>
-								</swiper-item>
-							</swiper>
-						 </uni-swiper-dot>
-						{{ common.platForm }} {{ common.sysTemInfo.windowHeight }}
-						<view class="hx_btn normal theme" @click="update">update</view>
-						<view class="hx_btn small theme m_t_10" @click="navigateTo('/pages/demo/video')">video</view>
-						<view class="hx_btn mini theme m_t_10" @click="navigateTo('/pages/demo/verify')">verify</view>
-						<view class="hx_btn mini disable m_t_10">cs</view>
-						<view style="height:2000rpx;"></view>
-					</mescroll-uni>
+					<uni-swiper-dot :info="info" :current="swiperCurrent" field="content" :mode="mode">
+						<swiper class="swiper-box" @change="swiperChange">
+							<swiper-item v-for="(item, index) in info" :key="index">
+								<view class="swiper-item">
+									<image :src="item.src" alt="" mode="aspectFill" />
+								</view>
+							</swiper-item>
+						</swiper>
+					 </uni-swiper-dot>
+					 {{ common.platForm }} {{ common.sysTemInfo.windowHeight }}
+					 <!-- #ifdef APP-PLUS -->
+					 <view class="hx_btn normal theme" @click="update">update</view>
+					 <!-- #endif -->
+					 <view class="hx_btn small theme m_t_10" @click="navigateTo('/pages/demo/video')">video</view>
+					 <view class="hx_btn mini disable m_t_10" @click="navigateTo('/pages/demo/verify')">verify</view>
+					 <view style="height:2000rpx;"></view>
 				</swiper-item>
 				<swiper-item>3</swiper-item>
 				<swiper-item>3</swiper-item>
@@ -37,7 +38,6 @@
 	</Layout>
 </template>
 <script>
-// 自定义的mescroll-xinlang.vue
 import MescrollUni from '@/components/mescroll-diy/mescroll-xinlang.vue';
 import uniSwiperDot from '@/components/uni-swiper-dot/uni-swiper-dot.vue';
 import { mapMutations, mapState } from 'vuex';
@@ -47,7 +47,7 @@ import UiConfig from '../../data/ui.js';
 export default {
 	data() {
 		return {
-			tabs: [{ name: '测试11' }, { name: '测试2' }, { name: '测试3' }],
+			tabs: [{ name: '测试1' }, { name: '测试2' }, { name: '测试3' }],
 			tabCurrent: 0,
 			mescroll: {},
 			downOption: {
@@ -73,6 +73,7 @@ export default {
 		...mapState(['common', 'user'])
 	},
 	methods: {
+		// #ifdef APP-PLUS
 		update() {
 			// wgt文件更新有点问题
 			// 下载wgt文件
@@ -114,6 +115,7 @@ export default {
 			}
 			downWgt();
 		},
+		// #endif
 		tabChange(index) {
 			this.tabCurrent = index;
 		},
