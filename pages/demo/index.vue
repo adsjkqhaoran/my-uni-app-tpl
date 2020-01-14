@@ -21,7 +21,7 @@
 									<view class="swiper-item"><image :src="item.src" alt="" mode="aspectFill" /></view>
 								</swiper-item>
 							</swiper>
-						</uni-swiper-dot>
+						 </uni-swiper-dot>
 						{{ common.platForm }} {{ common.sysTemInfo.windowHeight }}
 						<view class="hx_btn normal theme" @click="update">update</view>
 						<view class="hx_btn small theme m_t_10" @click="navigateTo('/pages/demo/video')">video</view>
@@ -30,7 +30,7 @@
 						<view style="height:2000rpx;"></view>
 					</mescroll-uni>
 				</swiper-item>
-				<swiper-item>2</swiper-item>
+				<swiper-item>3</swiper-item>
 				<swiper-item>3</swiper-item>
 			</swiper>
 		</view>
@@ -47,7 +47,7 @@ import UiConfig from '../../data/ui.js';
 export default {
 	data() {
 		return {
-			tabs: [{ name: '测试1' }, { name: '测试2' }, { name: '测试3' }],
+			tabs: [{ name: '测试11' }, { name: '测试2' }, { name: '测试3' }],
 			tabCurrent: 0,
 			mescroll: {},
 			downOption: {
