@@ -1,5 +1,5 @@
 <template>
-	<Layout class="d_flex">
+	<Layout >
 		<view class="container Index">
 			<nav-bar bgColor="#FFFFFF" :transparentFixedBgColor="common.theme" backState="2000" type="transparentFixed" :hasPlace="true" :mescroll="mescroll">
 				<view class="mp-search-box"><input class="ser-input" type="text" value="庆余年" disabled @click="toast('搜索')" /></view>
@@ -11,9 +11,10 @@
 				<view class="iconfont icon-qrcode" slot="right" @click="toScan"></view>
 				<!-- #endif -->
 			</nav-bar>
-			<QSTabs ref="tabs" :tabs="tabs" :current="tabCurrent" @change="tabChange" animationMode="line3" :activeColor="common.theme"></QSTabs>
-			<swiper class="swiper" :current="tabCurrent" @transition="transition" @change="tabSwiperChange" @animationfinish="animationfinish">
-				<swiper-item>
+			<QSTabs ref="tabs" :tabs="tabs" backgroundColor="#FFFFFF" :current="tabCurrent" @change="tabChange" animationMode="line3" :activeColor="common.theme"></QSTabs>
+			<swiper class="nav-swiper" :current="tabCurrent" @transition="transition" @change="tabSwiperChange" @animationfinish="animationfinish">
+				<swiper-item class="nav-swiper-item">
+				   <mescroll-uni :statusTop="false" top="0" bottom="0" :down="downOption" @down="downCallback" @scroll="mescrollScroll" @up="upCallback">
 					<uni-swiper-dot :info="info" :current="swiperCurrent" field="content" :mode="mode">
 						<swiper class="swiper-box" @change="swiperChange">
 							<swiper-item v-for="(item, index) in info" :key="index">
@@ -29,7 +30,9 @@
 					 <!-- #endif -->
 					 <view class="hx_btn small theme m_t_10" @click="navigateTo('/pages/demo/video')">video</view>
 					 <view class="hx_btn mini disable m_t_10" @click="navigateTo('/pages/demo/verify')">verify</view>
-					 <view style="height:2000rpx;"></view>
+					<view style="height:1000rpx;"></view>
+					 </mescroll-uni>
+					 
 				</swiper-item>
 				<swiper-item>3</swiper-item>
 				<swiper-item>3</swiper-item>
@@ -178,10 +181,12 @@ export default {
 <style lang="scss">
 .Index {
 	display: flex;
+	height: 100vh;
 	flex-direction: column;
-	.swiper {
+	.nav-swiper {
 		flex: 1;
-		height: auto !important;
+		.nav-swiper-item{
+		}
 	}
 	.swiper-box {
 		height: 50vw;
