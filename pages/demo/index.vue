@@ -29,7 +29,8 @@
 					 <view class="hx_btn normal theme" @click="update">update</view>
 					 <!-- #endif -->
 					 <view class="hx_btn small theme m_t_10" @click="navigateTo('/pages/demo/video')">video</view>
-					 <view class="hx_btn mini disable m_t_10" @click="navigateTo('/pages/demo/verify')">verify</view>
+					 <view class="hx_btn mini theme m_t_10" @click="navigateTo('/pages/demo/verify')">verify</view>
+					 <view class="hx_btn mini success m_t_10" @click="navigateTo('/pages/demo/ajax')">ajax</view>
 					<view style="height:1000rpx;"></view>
 					 </mescroll-uni>
 					 

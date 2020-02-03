@@ -16,6 +16,10 @@
 			"style": {
 			}
 		}
+        ,{
+            "path" : "pages/demo/ajax",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
